@@ -1,88 +1,89 @@
 # Allure
 
-A modern e-commerce shopping app built with Vue 3. Supports separate user and admin experiences, full cart management, and order checkout.
+A full-stack e-commerce web application built with Vue 3 that provides a seamless shopping experience for customers and product management tools for administrators.
 
-🛍️ **Live demo:** [allure-neon.vercel.app](https://allure-neon.vercel.app)
+**[Live Demo](https://allure-neon.vercel.app)**
 
----
+## Demo Accounts
+
+Explore the application using the following test accounts.
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@mail.com` | `admin1234` |
+| Customer | `maxfury@mail.com` | `maxfuryforlife` |
 
 ## Features
 
-**Customers**
-- Register and log in with JWT-based authentication
-- Browse the active product catalog
-- View individual product details
-- Add items to cart, update quantities, and remove items
-- See per-item subtotals and cart total
-- Checkout and place orders
-- View order confirmation and order history
-- View and manage profile details
+### Customer Experience
+- **Authentication** — Register and log in using JWT-based authentication.
+- **Product Catalog** — Browse active products and view individual product details.
+- **Shopping Cart** — Add products, update quantities, remove items, and view subtotals and the cart total.
+- **Checkout** — Place orders and view order confirmations.
+- **Profile Management** — View and update profile information.
 
-**Admins**
-- Access a dedicated admin dashboard
-- Create, update, and deactivate/reactivate products
-- View all orders across all users
+### Admin Dashboard
+- **Product Management** — Create, edit, deactivate, and reactivate products.
+- **Role-Based Access** — Access administrative functionality through protected routes.
 
-**General**
-- Dynamic navbar (shows Register/Login for guests, Logout for authenticated users)
-- Light / Dark mode toggle
-- Toast notifications via Notyf
-- Role-based route access (admins cannot add to cart; guests cannot access protected pages)
-- Single-page app with client-side routing via Vue Router
-
----
+### Additional Features
+- Dynamic navigation based on authentication status.
+- Light and dark theme toggle.
+- Toast notifications using Notyf.
+- Client-side routing with Vue Router.
+- Centralized application state using Pinia.
+- Axios API integration with automatic JWT authorization headers.
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Framework | Vue 3 |
+| Frontend Framework | Vue 3 |
 | Build Tool | Vite |
 | State Management | Pinia |
+| Routing | Vue Router |
 | HTTP Client | Axios |
-| Styling | Bootstrap 5 + Bootstrap Icons |
+| Styling | Bootstrap 5, Bootstrap Icons |
 | Notifications | Notyf |
+| Authentication | JWT-based authentication |
 | Deployment | Vercel |
-
----
 
 ## Getting Started
 
 ### Prerequisites
-
-- Node.js v18 or higher
+- Node.js 18 or higher
 - npm
-- A running backend API (configure the URL in your `.env` file)
+- Access to a running backend API
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/deyperfect/allure.git
 cd allure
-
-# Install dependencies
 npm install
 ```
 
-### Environment Variables
+### Environment Configuration
 
-Create a `.env.local` file in the project root for local development:
+Create a `.env.local` file in the project root:
 
 ```env
 VITE_JOB_TRACKER_API=http://localhost:4000
 ```
 
-For production, update `.env.production` with your hosted API URL.
+Set the variable to your deployed backend API URL when connecting to the production backend.
 
-### Running the App
+**Important:** Vite exposes variables prefixed with `VITE_` to client-side code. Only use this variable for public configuration, such as an API base URL. Never store passwords, private API keys, or other secrets in it.
+
+### Run Locally
+
+Start the development server:
 
 ```bash
-# Start the development server
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`.
+Open the local URL shown in your terminal, usually `http://localhost:5173`.
 
 ### Build for Production
 
@@ -90,23 +91,21 @@ The app will be available at `http://localhost:5173`.
 npm run build
 ```
 
-### Preview Production Build
+### Preview the Production Build
 
 ```bash
 npm run preview
 ```
 
----
-
 ## Project Structure
 
-```
+```text
 src/
-├── api.js                  # Axios instance with auth interceptor
-├── main.js                 # App entry point
-├── App.vue                 # Root component
+├── api.js
+├── main.js
+├── App.vue
 ├── stores/
-│   └── global.js           # Pinia store (user state, cart count)
+│   └── global.js
 ├── components/
 │   ├── NavbarComponent.vue
 │   ├── ThemeToggle.vue
@@ -126,13 +125,19 @@ src/
     └── ProfilePage.vue
 ```
 
----
-
 ## Deployment
 
-This project is deployed via [Vercel](https://vercel.com/). Connect the repository to Vercel and it will automatically build and deploy on every push to `main`. Make sure to set the `VITE_JOB_TRACKER_API` environment variable in your Vercel project settings.
+The frontend is deployed on [Vercel](https://vercel.com/).
 
----
+To deploy your own instance:
+
+1. Import the GitHub repository into Vercel.
+2. Configure the build settings for your Vite application.
+3. Set `VITE_JOB_TRACKER_API` in the Vercel project environment variables to your backend API URL.
+4. Ensure the backend permits requests from your deployed frontend through its CORS configuration.
+5. Deploy the application and verify the customer and admin workflows.
+
+Subsequent deployments can run automatically when you push changes to the configured production branch.
 
 ## Authors
 
