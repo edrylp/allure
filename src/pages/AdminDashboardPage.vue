@@ -148,7 +148,7 @@ const fetchProducts = async () => {
 }
 
 const handleCreateProduct = () => {
-  router.push('/products/')
+  router.push('/products/create')
 }
 
 onMounted(fetchProducts)
