@@ -35,23 +35,6 @@
         ></textarea>
       </div>
 
-      <!-- Price -->
-      <div class="mb-3">
-        <label for="productPrice" class="form-label">
-          Price
-        </label>
-
-        <input
-          type="number"
-          class="form-control"
-          id="productPrice"
-          v-model.number="form.price"
-          min="0"
-          step="0.01"
-          required
-        />
-      </div>
-
       <!-- Category -->
       <div class="mb-3">
         <label for="productCategory" class="form-label">
@@ -99,29 +82,20 @@ import api from "../api";
 const route = useRoute();
 const router = useRouter();
 
-// Determine whether the form is creating or editing a product
 const editMode = computed(() => !!route.params.id);
 
-// Form fields
 const form = ref({
   name: "",
   description: "",
-  price: null,
   category: "",
 });
 
-// Loading state
 const loading = ref(false);
 
-// Enable submission only when all required fields are valid
 const isEnabled = computed(() => {
   return (
     form.value.name.trim() !== "" &&
     form.value.description.trim() !== "" &&
-    form.value.price !== null &&
-    form.value.price !== "" &&
-    Number.isFinite(Number(form.value.price)) &&
-    Number(form.value.price) >= 0 &&
     form.value.category !== ""
   );
 });
@@ -136,12 +110,11 @@ const fetchProduct = async () => {
     form.value = {
       name: data.name ?? "",
       description: data.description ?? "",
-      price: data.price ?? null,
       category: data.category ?? "",
     };
   } catch (err) {
     console.error("Product not found:", err);
-    router.push("/products/all");
+    router.push("/products");
   } finally {
     loading.value = false;
   }
@@ -163,18 +136,16 @@ const submitProduct = async () => {
       await api.post("/products", form.value);
     }
 
-    router.push("/products/all");
+    // Redirect after successful submission
+    router.push("/products");
   } catch (err) {
     console.error("Product submission failed:", err);
-
-    // Log the server's response when available
     console.error("Server response:", err.response?.data);
   } finally {
     loading.value = false;
   }
 };
 
-// Load the product only when editing
 onMounted(() => {
   if (editMode.value) {
     fetchProduct();
