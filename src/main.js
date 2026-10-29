@@ -55,7 +55,7 @@ const routes = [
 
   { path: "/products/:id", name: "ProductDetails", component: ProductDetailsPage },
 
-  { path: "/provider/:id", name: "ProviderProfile", component: ProviderProfilePage },
+  { path: "/profile/:id", name: "ProviderProfile", component: ProviderProfilePage },
 
   // 🔥 ADDED ADMIN DASHBOARD ROUTE
   { path: "/admin", name: "AdminDashboard", component: AdminDashboardPage },
