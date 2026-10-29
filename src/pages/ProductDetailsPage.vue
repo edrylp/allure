@@ -109,7 +109,7 @@
               </div>
 
               <router-link
-                :to="`/users/profile/${service.providerId?._id}`"
+                :to="`/profile/${service.providerId?._id}`"
                 class="btn-view-profile"
               >
                 <i class="bi bi-person me-2"></i>
