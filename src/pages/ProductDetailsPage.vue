@@ -108,14 +108,14 @@
                 </div>
               </div>
 
-              <router-link
+              <!-- <router-link
                 :to="`/profile/${service.providerId?._id}`"
                 class="btn-view-profile"
               >
                 <i class="bi bi-person me-2"></i>
                 View Full Profile & All Services
                 <i class="bi bi-arrow-right ms-auto"></i>
-              </router-link>
+              </router-link> -->
 
             </div>
 
